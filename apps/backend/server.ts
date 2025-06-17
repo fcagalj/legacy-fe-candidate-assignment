@@ -26,10 +26,10 @@ app.post("/verify-signature", (req: Request, res: Response) => {
       signer,
       originalMessage: message,
     });
-  } catch (error: any) {
+  } catch (error) {
     res.json({
       isValid: false,
-      error: error.message,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
     });
   }
 });
