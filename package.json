@@ -1,0 +1,26 @@
+{
+  "name": "web3-signature-verifier",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A full-stack Web3 application for message signing and verification using Dynamic.xyz embedded wallet",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "clean": "turbo clean",
+    "type-check": "turbo type-check"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.8.3"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "npm@10.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

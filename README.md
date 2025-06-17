@@ -1,6 +1,10 @@
 # Take-Home Task: **Web3 Message Signer & Verifier**
 
+> > > > > > > 95a5947 (Packed as monorepo, added test coverage)
+
 A full-stack Web3 application built for message signing and verification using Dynamic.xyz embedded wallet, React, Node.js, Express, TypeScript, and ethers.js.
+
+**Now organized as a Turbo Monorepo for optimal development experience!** 🚀
 
 ---
 
@@ -11,25 +15,31 @@ A full-stack Web3 application built for message signing and verification using D
 - Signature verification using backend (ethers.js)
 - Full TypeScript support (frontend & backend)
 - Clean React architecture with MUI (Material-UI)
-- Frontend and backend test suites (Vitest & Jest)
+- Comprehensive test suites (Vitest & Jest)
 - Separation of concerns using Context, Hooks, and Components
+- **Turbo monorepo with optimized build pipeline**
+- **Parallel task execution and intelligent caching**
 
 ---
 
 ## 📂 Project Structure
 
 ```
-project-root/
-  frontend/   (React + Vite + TypeScript + MUI + Dynamic.xyz)
-  backend/    (Node.js + Express + TypeScript + ethers.js)
-  README.md
+web3-signature-verifier/
+├── apps/
+│   ├── frontend/          (React + Vite + TypeScript + MUI + Dynamic.xyz)
+│   └── backend/           (Node.js + Express + TypeScript + ethers.js)
+├── packages/              (Shared packages - for future use)
+├── turbo.json             (Turbo pipeline configuration)
+├── package.json           (Root workspace configuration)
+└── README.md
 ```
 
 ---
 
 ## 🚀 Tech Stack
 
-### Frontend
+### Frontend (`apps/frontend`)
 
 - React 19
 - Vite
@@ -39,13 +49,19 @@ project-root/
 - Axios
 - Vitest + React Testing Library (unit tests)
 
-### Backend
+### Backend (`apps/backend`)
 
 - Node.js
 - Express
 - TypeScript
 - ethers.js
 - Jest + Supertest (unit + integration tests)
+
+### Monorepo Tools
+
+- **Turbo** - Build system and orchestrator
+- **npm workspaces** - Package management
+- **TypeScript** - Shared type checking
 
 ---
 
@@ -54,62 +70,87 @@ project-root/
 ### Prerequisites
 
 - Node.js >= 18.x.x
-- NPM >= 9.x.x
+- NPM >= 10.x.x
+
+### Quick Start (Recommended)
+
+```bash
+# Install all dependencies across the monorepo
+npm install
+
+# Start both frontend and backend in development mode
+npm run dev
+```
+
+This will start:
+
+- Backend server on `http://localhost:5000`
+- Frontend application on `http://localhost:3200`
 
 ---
 
-### Backend Setup
+## 🛠️ Available Scripts
+
+### Root Level Scripts
 
 ```bash
-cd backend
-npm install
+# Development - starts both apps in parallel
+npm run dev
+
+# Build all apps
+npm run build
+
+# Run tests across all apps
+npm run test
+
+# Lint all apps
+npm run lint
+
+# Type checking across all apps
+npm run type-check
+
+# Clean all build artifacts
+npm run clean
 ```
 
-#### Create `.env` file:
+### Individual App Scripts
+
+You can also run scripts for individual apps:
+
+```bash
+# Frontend only
+npm run dev --workspace=apps/frontend
+npm run build --workspace=apps/frontend
+npm run test --workspace=apps/frontend
+
+# Backend only
+npm run dev --workspace=apps/backend
+npm run build --workspace=apps/backend
+npm run test --workspace=apps/backend
+```
+
+---
+
+## 🔧 Environment Configuration
+
+### Backend (`apps/backend/.env`)
 
 ```env
 PORT=5000
 ```
 
-#### Run backend:
-
-```bash
-npm run dev
-```
-
-The backend server will run on:  
-`http://localhost:5000`
-
----
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-```
-
-#### Create `.env` file:
+### Frontend (`apps/frontend/.env`)
 
 ```env
 VITE_DYNAMIC_ENV_ID=your_dynamic_environment_id
 VITE_BACKEND_URL=http://localhost:5000
 ```
 
-Make sure to whitelist your local domain in Dynamic.xyz Dashboard:
+**Important:** Make sure to whitelist your local domain in Dynamic.xyz Dashboard:
 
 ```
 http://localhost:3200
 ```
-
-#### Run frontend:
-
-```bash
-npm run dev
-```
-
-Frontend will run on:  
-`http://localhost:3200`
 
 ---
 
@@ -124,13 +165,53 @@ Frontend will run on:
 
 ---
 
-## 📌 Trade-Offs / Improvements
+## 🏗️ Turbo Benefits
 
-- Simple signature verification without database persistence.
-- No roles/auth at this stage (can be added with Dynamic.xyz MFA or OAuth).
-- Frontend state is kept locally in-memory (can be extended to localStorage for history persistence).
-- Per-message verification status can be added for UX improvements.
+This monorepo setup provides:
+
+- **🚀 Fast Builds** - Turbo's intelligent caching system
+- **⚡ Parallel Execution** - Run tasks across apps simultaneously
+- **🔄 Incremental Builds** - Only rebuild what has changed
+- **📊 Better DX** - Unified commands and consistent tooling
+- **🎯 Dependency Management** - Shared dependencies where appropriate
 
 ---
 
-✅ **Thank you for reviewing my submission!**
+## 📌 Trade-Offs / Future Improvements
+
+- Simple signature verification without database persistence
+- No roles/auth at this stage (can be added with Dynamic.xyz MFA or OAuth)
+- Frontend state is kept locally in-memory (can be extended to localStorage for history persistence)
+- Per-message verification status can be added for UX improvements
+- **Shared packages** - Add shared utilities, types, and components as the project grows
+- **E2E Testing** - Add Playwright or Cypress for end-to-end testing
+- **CI/CD Pipeline** - Leverage Turbo's remote caching for faster CI builds
+
+---
+
+## 🚦 Development Workflow
+
+```bash
+# Clone and setup
+git clone <repository-url>
+cd web3-signature-verifier
+npm install
+
+# Start development
+npm run dev
+
+# Make changes to frontend or backend
+# Turbo will automatically handle rebuilds and restarts
+
+# Run tests
+npm run test
+
+# Build for production
+npm run build
+```
+
+---
+
+✅ **Enjoy your optimized Turbo monorepo setup!**
+
+The project is now structured for scalability, with improved developer experience and build performance.
