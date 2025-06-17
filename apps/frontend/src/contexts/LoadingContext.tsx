@@ -18,7 +18,7 @@ const initialState: IState = {
 };
 
 const handlers: {
-  [key: string]: Function;
+  [key: string]: (state: IState, action: IAction) => IState;
 } = {
   SET_IS_LOADING: (state: IState, action: IAction) => {
     return {
@@ -36,8 +36,7 @@ const reducer = (state: IState, action: IAction) =>
 //  Context
 const LoadingContext = createContext({
   ...initialState,
-  //  @ts-ignore
-  setLoadingAct: (value: boolean) => {}, // eslint-disable-line
+  setLoadingAct: (_: boolean) => {}, // eslint-disable-line
 });
 
 //  Provider

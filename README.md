@@ -4,7 +4,7 @@
 
 A full-stack Web3 application built for message signing and verification using Dynamic.xyz embedded wallet, React, Node.js, Express, TypeScript, and ethers.js.
 
-**Now organized as a Turbo Monorepo for optimal development experience!** 🚀
+**Project is organized as a Turbo Monorepo for optimal development experience!** 🚀
 
 ---
 
