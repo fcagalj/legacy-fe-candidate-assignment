@@ -1,63 +1,136 @@
 # Take-Home Task: **Web3 Message Signer & Verifier**
-React + Dynamic.xyz Headless Implementation (Frontend) | Node.js + Express (Backend)
 
-## 🎯 Objective
-Build a full-stack Web3 app that allows a user to:
-1. Authenticate using a **Dynamic.xyz embedded wallet headless implementation https://docs.dynamic.xyz/headless/headless-email**
-2. Enter and **sign a custom message** of the user's choosing
-3. Send the signed message to a **Node.js + Express** backend
-4. Backend verifies the signature and responds with validity + address
+A full-stack Web3 application built for message signing and verification using Dynamic.xyz embedded wallet, React, Node.js, Express, TypeScript, and ethers.js.
 
-## 🔧 Requirements
+---
 
-### 🧩 Frontend (React 18+)
-* Integrate Dynamic.xyz Embedded Wallet
-* After authentication:
-   * Show connected wallet address
-   * Provide a form to input a custom message
-   * Let user sign the message
-   * Submit `{ message, signature }` to backend
-* Show result from backend:
-   * Whether the signature is valid
-   * Which wallet signed it
-* Allow signing multiple messages (show a local history)
+## 🧩 Project Features
 
-**Note:** How you structure the React app is up to you — but the app complexity is high enough that good React patterns will shine through.
+- Web3 wallet authentication via Dynamic.xyz headless implementation
+- Message signing with wallet private key
+- Signature verification using backend (ethers.js)
+- Full TypeScript support (frontend & backend)
+- Clean React architecture with MUI (Material-UI)
+- Frontend and backend test suites (Vitest & Jest)
+- Separation of concerns using Context, Hooks, and Components
 
-### 🌐 Backend (Node.js + Express – required)
-* Create a REST API endpoint: `POST /verify-signature`
-* Accept:
-```json
-{ "message": "string", "signature": "string" }
+---
+
+## 📂 Project Structure
+
 ```
-* Use `ethers.js` (or `viem`) to:
-   * Recover the signer from the signature
-   * Validate the signature
-* Return:
-```json
-{ "isValid": true, "signer": "0xabc123...", "originalMessage": "..." }
+project-root/
+  frontend/   (React + Vite + TypeScript + MUI + Dynamic.xyz)
+  backend/    (Node.js + Express + TypeScript + ethers.js)
+  README.md
 ```
 
-## Behavior & Constraints
-* Session state can be in-memory (no DB required)
-* Message signing history should persist across React component state or localStorage
-* No third-party signature validation services — use raw `ethers.js`, `viem` or similar in backend
+---
 
-## 🚀 Submission Guidelines
-* Submit a **PR to the GitHub repo**
-* Include:
-   * Setup instructions for both frontend and backend in a README.md file
-   * Notes on any trade-offs made or areas you'd improve
-   * A test suite with all tests passing
-* Bonus: Implement headless **multi-factor auth** to seucre the user https://docs.dynamic.xyz/headless/headless-mfa
-* Bonus: Link to deployed version (e.g., Vercel frontend, Render backend)
+## 🚀 Tech Stack
 
-## ✅ Evaluation Focus
-| Area | Evaluated On |
-|------|-------------|
-| **React architecture** | Component design, state flow, hooks, separation of concerns |
-| **Dynamic.xyz usage** | Clean login, wallet context management, signing flow |
-| **Node.js + Express** | REST API correctness, signature validation logic, modularity |
-| **Code quality** | Readability, organization, error handling, TypeScript use |
-| **User experience** | Clear flows, responsive feedback, intuitive UI |
-| **Extensibility** | Evidence of scalable thought (e.g., room for auth, roles, message types) |
+### Frontend
+
+- React 19
+- Vite
+- TypeScript
+- MUI (Material UI)
+- Dynamic.xyz SDK
+- Axios
+- Vitest + React Testing Library (unit tests)
+
+### Backend
+
+- Node.js
+- Express
+- TypeScript
+- ethers.js
+- Jest + Supertest (unit + integration tests)
+
+---
+
+## ⚙️ Setup Instructions
+
+### Prerequisites
+
+- Node.js >= 18.x.x
+- NPM >= 9.x.x
+
+---
+
+### Backend Setup
+
+```bash
+cd backend
+npm install
+```
+
+#### Create `.env` file:
+
+```env
+PORT=5000
+```
+
+#### Run backend:
+
+```bash
+npm run dev
+```
+
+The backend server will run on:  
+`http://localhost:5000`
+
+---
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+#### Create `.env` file:
+
+```env
+VITE_DYNAMIC_ENV_ID=your_dynamic_environment_id
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+Make sure to whitelist your local domain in Dynamic.xyz Dashboard:
+
+```
+http://localhost:3200
+```
+
+#### Run frontend:
+
+```bash
+npm run dev
+```
+
+Frontend will run on:  
+`http://localhost:3200`
+
+---
+
+## 🎯 Application Flow
+
+1. User connects wallet via Dynamic.xyz embedded wallet.
+2. User inputs a message.
+3. Message is signed with wallet private key.
+4. Signed message and signature are submitted to backend.
+5. Backend verifies the signature using ethers.js.
+6. Verification result is displayed to user.
+
+---
+
+## 📌 Trade-Offs / Improvements
+
+- Simple signature verification without database persistence.
+- No roles/auth at this stage (can be added with Dynamic.xyz MFA or OAuth).
+- Frontend state is kept locally in-memory (can be extended to localStorage for history persistence).
+- Per-message verification status can be added for UX improvements.
+
+---
+
+✅ **Thank you for reviewing my submission!**
