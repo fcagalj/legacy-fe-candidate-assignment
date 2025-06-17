@@ -34,6 +34,12 @@ app.post("/verify-signature", (req: Request, res: Response) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Backend running on port ${port}`);
-});
+// Export the app for testing
+export default app;
+
+// Only start the server if this file is run directly
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Backend running on port ${port}`);
+  });
+}
