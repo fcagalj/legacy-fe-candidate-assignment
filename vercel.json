@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "buildCommand": "turbo build --filter=@web3-signature-verifier/frontend",
+  "outputDirectory": "apps/frontend/dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
