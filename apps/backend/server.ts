@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5004;
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +16,7 @@ interface VerifyRequest {
   signature: string;
 }
 
-app.post("/verify-signature", (req: Request, res: Response) => {
+app.post("/api/verify-signature", (req: Request, res: Response) => {
   const { message, signature } = req.body as VerifyRequest;
 
   try {
@@ -41,5 +41,7 @@ export default app;
 if (require.main === module) {
   app.listen(port, () => {
     console.log(`Backend running on port ${port}`);
+    console.log("API endpoints available:");
+    console.log("- POST /api/verify-signature - Verify message signatures");
   });
 }

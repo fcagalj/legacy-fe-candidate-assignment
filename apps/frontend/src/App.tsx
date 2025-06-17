@@ -12,6 +12,8 @@ export default function App() {
       settings={{
         environmentId: projectId,
         walletConnectors: [EthereumWalletConnectors],
+        appName: "Web3 Signature Verifier with MFA",
+        appLogoUrl: "/vite.svg",
       }}
     >
       <LoadingProvider>
