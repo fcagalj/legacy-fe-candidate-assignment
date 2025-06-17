@@ -17,7 +17,7 @@ describe("Signature Verification API", () => {
 
     it("should verify a valid signature successfully", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
           signature: validSignature,
@@ -36,7 +36,7 @@ describe("Signature Verification API", () => {
         "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef12";
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
           signature: invalidSignature,
@@ -51,7 +51,7 @@ describe("Signature Verification API", () => {
       const tamperedMessage = "Hello, Web3 World! (tampered)";
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: tamperedMessage,
           signature: validSignature,
@@ -66,7 +66,7 @@ describe("Signature Verification API", () => {
 
     it("should handle missing message field", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           signature: validSignature,
         })
@@ -78,7 +78,7 @@ describe("Signature Verification API", () => {
 
     it("should handle missing signature field", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
         })
@@ -90,7 +90,7 @@ describe("Signature Verification API", () => {
 
     it("should recover different address with empty message", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: "",
           signature: validSignature,
@@ -105,7 +105,7 @@ describe("Signature Verification API", () => {
 
     it("should handle empty signature", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
           signature: "",
@@ -118,7 +118,7 @@ describe("Signature Verification API", () => {
 
     it("should handle malformed signature", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
           signature: "not-a-valid-signature",
@@ -131,7 +131,7 @@ describe("Signature Verification API", () => {
 
     it("should handle non-string message", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: 12345,
           signature: validSignature,
@@ -144,7 +144,7 @@ describe("Signature Verification API", () => {
 
     it("should handle non-string signature", async () => {
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: testMessage,
           signature: 12345,
@@ -162,7 +162,7 @@ describe("Signature Verification API", () => {
     });
 
     it("should handle wrong HTTP method on verify endpoint", async () => {
-      await request(app).get("/verify-signature").expect(404);
+      await request(app).get("/api/verify-signature").expect(404);
     });
   });
 
@@ -173,7 +173,7 @@ describe("Signature Verification API", () => {
       const signature = await wallet.signMessage(longMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: longMessage,
           signature: signature,
@@ -190,7 +190,7 @@ describe("Signature Verification API", () => {
       const signature = await wallet.signMessage(unicodeMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: unicodeMessage,
           signature: signature,

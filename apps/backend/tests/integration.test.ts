@@ -21,7 +21,7 @@ Nonce: abc123`;
       const signature = await wallet.signMessage(dappMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: dappMessage,
           signature: signature,
@@ -45,7 +45,7 @@ Nonce: abc123`;
       const signature = await wallet.signMessage(jsonMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: jsonMessage,
           signature: signature,
@@ -66,7 +66,7 @@ Nonce: abc123`;
       const verificationPromises = wallets.map(async (wallet) => {
         const signature = await wallet.signMessage(message);
         return request(app)
-          .post("/verify-signature")
+          .post("/api/verify-signature")
           .send({
             message: message,
             signature: signature,
@@ -98,7 +98,7 @@ Nonce: abc123`;
       // Create 10 concurrent requests
       const concurrentRequests = Array.from({ length: 10 }, () =>
         request(app)
-          .post("/verify-signature")
+          .post("/api/verify-signature")
           .send({
             message: message,
             signature: signature,
@@ -123,7 +123,7 @@ Nonce: abc123`;
       const startTime = Date.now();
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: message,
           signature: signature,
@@ -147,7 +147,7 @@ Nonce: abc123`;
       const signature = await wallet.signMessage(specialMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: specialMessage,
           signature: signature,
@@ -165,7 +165,7 @@ Nonce: abc123`;
       const signature = await wallet.signMessage(whitespaceMessage);
 
       const response = await request(app)
-        .post("/verify-signature")
+        .post("/api/verify-signature")
         .send({
           message: whitespaceMessage,
           signature: signature,
