@@ -39,15 +39,18 @@ export default function MFASetup({
     setError("");
 
     try {
-      const response = await fetch("/api/mfa/setup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: user?.email,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/mfa/setup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user?.email,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to setup MFA");
@@ -69,16 +72,19 @@ export default function MFASetup({
     setError("");
 
     try {
-      const response = await fetch("/api/mfa/verify-setup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: user?.email,
-          code: verificationCode,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/mfa/verify-setup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user?.email,
+            code: verificationCode,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Invalid verification code");

@@ -25,15 +25,18 @@ export const useMFA = () => {
     setMFAState((prev) => ({ ...prev, loading: true, error: null }));
 
     try {
-      const response = await fetch("/api/mfa/status", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: user.email,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/mfa/status`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to check MFA status");
@@ -62,15 +65,18 @@ export const useMFA = () => {
     setMFAState((prev) => ({ ...prev, loading: true, error: null }));
 
     try {
-      const response = await fetch("/api/mfa/setup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: user.email,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/mfa/setup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to setup MFA");
@@ -96,16 +102,19 @@ export const useMFA = () => {
       setMFAState((prev) => ({ ...prev, loading: true, error: null }));
 
       try {
-        const response = await fetch("/api/mfa/verify-setup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: user.email,
-            code,
-          }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/mfa/verify-setup`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              code,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Invalid verification code");
@@ -136,16 +145,19 @@ export const useMFA = () => {
       setMFAState((prev) => ({ ...prev, loading: true, error: null }));
 
       try {
-        const response = await fetch("/api/mfa/verify", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: user.email,
-            code,
-          }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/mfa/verify`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              code,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Invalid verification code");
@@ -181,16 +193,19 @@ export const useMFA = () => {
       setMFAState((prev) => ({ ...prev, loading: true, error: null }));
 
       try {
-        const response = await fetch("/api/mfa/disable", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: user.email,
-            code,
-          }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/mfa/disable`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              code,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to disable MFA");

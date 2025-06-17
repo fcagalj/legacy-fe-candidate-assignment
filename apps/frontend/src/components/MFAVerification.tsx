@@ -34,16 +34,19 @@ export default function MFAVerification({
     setError("");
 
     try {
-      const response = await fetch("/api/mfa/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          code: verificationCode,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/mfa/verify`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: userEmail,
+            code: verificationCode,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

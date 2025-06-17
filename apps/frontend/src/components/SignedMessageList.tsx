@@ -24,7 +24,7 @@ export default function SignedMessageList({
   ) => {
     setLoadingAct(true);
     const res = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/verify-signature`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/verify-signature`,
       { message, signature }
     );
     const { isValid, signer, originalMessage, error } = res.data;
